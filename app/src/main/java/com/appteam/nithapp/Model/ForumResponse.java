@@ -1,4 +1,4 @@
-package Model;
+package com.appteam.nithapp.Model;
 
 import com.google.gson.annotations.SerializedName;
 

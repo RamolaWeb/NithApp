@@ -1,9 +1,11 @@
-package Network;
+package com.appteam.nithapp.Network;
 
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
+
+
 
 /**
  * Created by Ramola on 7/31/2016.

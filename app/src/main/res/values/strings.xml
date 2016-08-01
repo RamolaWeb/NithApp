@@ -1,5 +1,5 @@
 <resources>
     <string name="app_name">NithApp</string>
     <string name="action_settings">Settings</string>
-    <string name="title_activity_forum">ForumActivity</string>
+    <string name="title_activity_forum">com.appteam.nithapp.ForumActivity</string>
 </resources>

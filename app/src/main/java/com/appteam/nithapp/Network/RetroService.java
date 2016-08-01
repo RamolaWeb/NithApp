@@ -1,4 +1,4 @@
-package Network;
+package com.appteam.nithapp.Network;
 
 /**
  * Created by Ramola on 7/31/2016.

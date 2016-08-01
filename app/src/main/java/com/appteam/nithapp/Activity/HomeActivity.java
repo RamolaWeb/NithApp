@@ -1,4 +1,4 @@
-package com.appteam.nithapp.activity;
+package com.appteam.nithapp.Activity;
 
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;

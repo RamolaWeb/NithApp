@@ -1,4 +1,4 @@
-package com.appteam.nithapp.activity;
+package com.appteam.nithapp.Activity;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -9,12 +9,11 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 
+import com.appteam.nithapp.Model.ForumModel;
 import com.appteam.nithapp.R;
+import com.appteam.nithapp.RecyclerViews.ForumRecyclerView;
 
 import java.util.ArrayList;
-
-import Model.ForumModel;
-import RecyclerViews.ForumRecyclerView;
 
 public class ForumActivity extends AppCompatActivity {
 private RecyclerView recyclerView;
