@@ -56,7 +56,8 @@ public class ForumRecyclerView extends RecyclerView.Adapter<ForumRecyclerView.vi
         if (!list.get(position).getTotal_comment().isEmpty()) {
             holder.comment_forum.setText(list.get(position).getTotal_comment());
         }
-        if (!list.get(position).getContent_image().isEmpty()) {
+        if (list.get(position).getContent_image()!=null&&!list.get(position).getContent_image().isEmpty()) {
+            holder.image_content_forum.setVisibility(View.VISIBLE);
             Glide.with(context).load(list.get(position).getContent_image()).diskCacheStrategy(DiskCacheStrategy.SOURCE).into(holder.image_content_forum);
         }
     }

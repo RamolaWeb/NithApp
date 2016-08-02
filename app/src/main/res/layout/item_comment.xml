@@ -1,5 +1,3 @@
-<?xml version="1.0" encoding="utf-8"?>
-
 <android.support.v7.widget.CardView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
@@ -17,12 +15,12 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
-<!--
-            <ImageView
-                android:id="@+id/image_user_forum"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1" />-->
+            <!--
+                        <ImageView
+                            android:id="@+id/image_user_forum"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1" />-->
 
             <TextView
                 android:textAlignment="center"
@@ -49,13 +47,6 @@
             android:layout_height="2dp"
             android:background="@android:color/darker_gray" />
 
-        <ImageView
-            android:id="@+id/image_content_forum"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:scaleType="centerCrop"
-            android:visibility="gone" />
-
         <TextView
             android:paddingLeft="2dp"
             android:text="Hello Your Title Of The Forum Comes Here"
@@ -63,33 +54,5 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 
-        <View
-            android:layout_marginBottom="2dp"
-            android:layout_marginTop="2dp"
-            android:layout_width="match_parent"
-            android:layout_height="2dp"
-            android:background="@android:color/darker_gray" />
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <TextView
-                android:textAlignment="center"
-                android:paddingLeft="2dp"
-                android:text="34 View"
-                android:id="@+id/likes_user_forum"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1" />
-
-            <TextView
-                android:textAlignment="center"
-                android:text="14 Comment"
-                android:id="@+id/comment_user_forum"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1" />
-        </LinearLayout>
     </LinearLayout>
 </android.support.v7.widget.CardView>

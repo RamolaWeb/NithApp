@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:icon="@drawable/photocamera"
+        android:id="@+id/send_photo"
+        android:title="Select Photo"
+        app:showAsAction="always"
+        android:orderInCategory="200"/>
+    <item
+        android:icon="@drawable/sendsymbol"
+        android:id="@+id/send_forum"
+        android:title="Send Forum"
+        app:showAsAction="always"
+        android:orderInCategory="100"/>
+</menu>

@@ -8,17 +8,26 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.Toast;
 
 import com.appteam.nithapp.Model.ForumModel;
+import com.appteam.nithapp.Model.ForumResponse;
+import com.appteam.nithapp.Network.RetroCreator;
 import com.appteam.nithapp.R;
+import com.appteam.nithapp.RecyclerItemClickListener;
 import com.appteam.nithapp.RecyclerViews.ForumRecyclerView;
 
 import java.util.ArrayList;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class ForumActivity extends AppCompatActivity {
 private RecyclerView recyclerView;
 private ForumRecyclerView adapter;
 private ArrayList<ForumModel> list;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +48,29 @@ private ArrayList<ForumModel> list;
         adapter=new ForumRecyclerView(this);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(adapter);
+
+        Call<ForumResponse> forumData= RetroCreator.getService().getAllForum();
+        forumData.enqueue(new Callback<ForumResponse>() {
+            @Override
+            public void onResponse(Call<ForumResponse> call, Response<ForumResponse> response) {
+                list=response.body().getForum();
+                adapter.refresh(list);
+            }
+
+            @Override
+            public void onFailure(Call<ForumResponse> call, Throwable t) {
+                Toast.makeText(ForumActivity.this,""+t.getMessage(),Toast.LENGTH_LONG).show();
+            }
+        });
+
+        recyclerView.addOnItemTouchListener(new RecyclerItemClickListener(this, new RecyclerItemClickListener.OnItemClickListener() {
+            @Override
+            public void onItemClick(View view, int position) {
+                Intent i=new Intent(ForumActivity.this,ViewForum.class);
+                i.putExtra(ViewForum.ID_TOPIC,list.get(position).getId());
+                startActivity(i);
+            }
+        }));
     }
 
 

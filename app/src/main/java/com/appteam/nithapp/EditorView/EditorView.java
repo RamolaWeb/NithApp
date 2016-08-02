@@ -15,6 +15,9 @@ import android.widget.ScrollView;
 
 import com.appteam.nithapp.R;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class EditorView extends ScrollView {
 
     private static final int EDIT_PADDING_TOP = 10;
@@ -165,5 +168,31 @@ public class EditorView extends ScrollView {
     private int dip2px(float dipValue) {
         float m = getContext().getResources().getDisplayMetrics().density;
         return (int) (dipValue * m + 0.5f);
+    }
+
+    public List<EditData> buildEditData() {
+        List<EditData> dataList = new ArrayList<EditData>();
+        int num = allLayout.getChildCount();
+        for (int index = 0; index < num; index++) {
+            View itemView = allLayout.getChildAt(index);
+            EditData itemData = new EditData();
+            if (itemView instanceof EditText) {
+                EditText item = (EditText) itemView;
+                itemData.inputStr = item.getText().toString();
+            }
+            /*
+            else if (itemView instanceof ImageView) {
+                ImageView item = (ImageView) itemView;
+            }*/
+            dataList.add(itemData);
+        }
+
+        return dataList;
+    }
+
+    class EditData {
+        String inputStr;
+       // String imagePath;
+       // Bitmap bitmap;
     }
 }

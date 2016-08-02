@@ -10,20 +10,19 @@ import com.google.gson.annotations.SerializedName;
  */
 public class ForumModel implements Parcelable {
 
-    @SerializedName("title")
+    @SerializedName("topic")
     private String title;
     @SerializedName("id")
     private String id;
     @SerializedName("author")
     private String author;
-    @SerializedName("date")
+    @SerializedName("datetime")
     private String created_on;
-    @SerializedName("upvote")
+    @SerializedName("view")
     private String up_vote;
-    @SerializedName("total comment")
+    @SerializedName("reply")
     private String total_comment;
 
-    @SerializedName("")
     private String content_image;
 
     public ForumModel(String title, String id, String author, String created_on, String up_vote, String total_comment) {

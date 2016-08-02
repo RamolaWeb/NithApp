@@ -16,7 +16,7 @@ public class RetroCreator {
         loggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BASIC);
         OkHttpClient.Builder oBuilder = new OkHttpClient.Builder();
         oBuilder.addNetworkInterceptor(loggingInterceptor);
-        Retrofit retrofit = new Retrofit.Builder().baseUrl("").addConverterFactory(GsonConverterFactory.create()).client(oBuilder.build()).build();
+        Retrofit retrofit = new Retrofit.Builder().baseUrl("http://www.logintest.site88.net/forum/").addConverterFactory(GsonConverterFactory.create()).client(oBuilder.build()).build();
         RetroService service = retrofit.create(RetroService.class);
         return service;
     }
