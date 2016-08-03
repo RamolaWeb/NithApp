@@ -14,8 +14,7 @@ public class ForumModel implements Parcelable {
     private String title;
     @SerializedName("id")
     private String id;
-    @SerializedName("author")
-    private String author;
+
     @SerializedName("datetime")
     private String created_on;
     @SerializedName("view")
@@ -25,19 +24,17 @@ public class ForumModel implements Parcelable {
 
     private String content_image;
 
-    public ForumModel(String title, String id, String author, String created_on, String up_vote, String total_comment) {
+    public ForumModel(String title, String id,  String created_on, String up_vote, String total_comment) {
         this.title = title;
         this.id = id;
-        this.author = author;
         this.created_on = created_on;
         this.up_vote = up_vote;
         this.total_comment = total_comment;
     }
 
-    public ForumModel(String title, String id, String author, String created_on, String up_vote, String total_comment, String content_image) {
+    public ForumModel(String title, String id, String created_on, String up_vote, String total_comment, String content_image) {
         this.title = title;
         this.id = id;
-        this.author = author;
         this.created_on = created_on;
         this.up_vote = up_vote;
         this.total_comment = total_comment;
@@ -47,7 +44,6 @@ public class ForumModel implements Parcelable {
     protected ForumModel(Parcel in) {
         title = in.readString();
         id = in.readString();
-        author = in.readString();
         created_on = in.readString();
         up_vote = in.readString();
         total_comment = in.readString();
@@ -75,7 +71,6 @@ public class ForumModel implements Parcelable {
     public void writeToParcel(Parcel parcel, int i) {
         parcel.writeString(title);
         parcel.writeString(id);
-        parcel.writeString(author);
         parcel.writeString(created_on);
         parcel.writeString(up_vote);
         parcel.writeString(total_comment);
@@ -96,14 +91,6 @@ public class ForumModel implements Parcelable {
 
     public void setId(String id) {
         this.id = id;
-    }
-
-    public String getAuthor() {
-        return author;
-    }
-
-    public void setAuthor(String author) {
-        this.author = author;
     }
 
     public String getCreated_on() {

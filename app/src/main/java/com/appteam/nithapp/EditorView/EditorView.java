@@ -3,6 +3,7 @@ package com.appteam.nithapp.EditorView;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,10 +14,8 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
 
+import com.appteam.nithapp.Model.AddTopic;
 import com.appteam.nithapp.R;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class EditorView extends ScrollView {
 
@@ -53,7 +52,7 @@ public class EditorView extends ScrollView {
         onClickListener = new OnClickListener() {
             @Override
             public void onClick(View view) {
-              allLayout.removeView(view);
+                allLayout.removeView(view);
             }
         };
 
@@ -77,10 +76,15 @@ public class EditorView extends ScrollView {
             }
         };
 
-        EditText e = createEditText("Type Here", dip2px(10));
+        EditText e = createEditText("Title", dip2px(10));
         LinearLayout.LayoutParams p = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         allLayout.addView(e, p);
-        lastEditText = e;
+
+        EditText content = createEditText("Type Content or Insert Image", dip2px(10));
+        LinearLayout.LayoutParams contentp = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        allLayout.addView(content, contentp
+        );
+        lastEditText = content;
 
     }
 
@@ -119,16 +123,17 @@ public class EditorView extends ScrollView {
 
             if (v != null) {
                 if (v instanceof EditText) {
-                    String s1 = editText.getText().toString();
-                    EditText q = (EditText) v;
-                    String s2 = q.getText().toString();
-                    allLayout.removeView(editText);
-                    q.setText(s1 + s2);
-                    q.requestFocus();
-                    q.setSelection(s2.length(), s2.length());
-                    lastEditText = q;
-                }
-                else if(v instanceof ImageView){
+                    if ((int) v.getTag() != 1) {
+                        String s1 = editText.getText().toString();
+                        EditText q = (EditText) v;
+                        String s2 = q.getText().toString();
+                        allLayout.removeView(editText);
+                        q.setText(s1 + s2);
+                        q.requestFocus();
+                        q.setSelection(s2.length(), s2.length());
+                        lastEditText = q;
+                    }
+                } else if (v instanceof ImageView) {
                     allLayout.removeView(v);
                 }
 
@@ -137,24 +142,23 @@ public class EditorView extends ScrollView {
 
     }
 
-    public void addImage(Bitmap b){
-        String text1=lastEditText.getText().toString();
-        int pos=lastEditText.getSelectionStart();
-        String text2=text1.substring(0,pos).trim();
-        int index=allLayout.indexOfChild(lastEditText);
+    public void addImage(Bitmap b) {
+        String text1 = lastEditText.getText().toString();
+        int pos = lastEditText.getSelectionStart();
+        String text2 = text1.substring(0, pos).trim();
+        int index = allLayout.indexOfChild(lastEditText);
 
-        if(text1.isEmpty()){
-            createImageViewAtIndex(b,index);
-        }
-        else {
+        if (text1.isEmpty() && (int) lastEditText.getTag() != 1) {
+            createImageViewAtIndex(b, index);
+        } else {
             lastEditText.setText(text2);
-            String t=text1.substring(pos).trim();
-            if(allLayout.getChildCount()-1==index||!t.isEmpty()){
-                createEditTextAtIndex(t,index+1);
+            String t = text1.substring(pos).trim();
+            if (allLayout.getChildCount() - 1 == index || !t.isEmpty()) {
+                createEditTextAtIndex(t, index + 1);
             }
-          createImageViewAtIndex(b,index+1);
+            createImageViewAtIndex(b, index + 1);
             lastEditText.requestFocus();
-            lastEditText.setSelection(text2.length(),text2.length());
+            lastEditText.setSelection(text2.length(), text2.length());
         }
         hideKeyBoard();
     }
@@ -170,29 +174,31 @@ public class EditorView extends ScrollView {
         return (int) (dipValue * m + 0.5f);
     }
 
-    public List<EditData> buildEditData() {
-        List<EditData> dataList = new ArrayList<EditData>();
+    public AddTopic buildEditData() {
+        String topic="",detail="";
+
         int num = allLayout.getChildCount();
         for (int index = 0; index < num; index++) {
             View itemView = allLayout.getChildAt(index);
-            EditData itemData = new EditData();
+            Log.d("index",""+index);
             if (itemView instanceof EditText) {
                 EditText item = (EditText) itemView;
-                itemData.inputStr = item.getText().toString();
+                if (index == 0) {
+                    topic=item.getText().toString();
+                }
+                if (index == 2) {
+                    detail=item.getText().toString();
+                }
+                else if(index==1){
+                    detail=item.getText().toString();
+                }
             }
             /*
             else if (itemView instanceof ImageView) {
                 ImageView item = (ImageView) itemView;
             }*/
-            dataList.add(itemData);
         }
-
-        return dataList;
-    }
-
-    class EditData {
-        String inputStr;
-       // String imagePath;
-       // Bitmap bitmap;
+        AddTopic itemData = new AddTopic(topic,detail,"Sahil","sramola5@gmail.com");
+        return itemData;
     }
 }

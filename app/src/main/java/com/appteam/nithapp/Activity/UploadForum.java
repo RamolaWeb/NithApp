@@ -12,7 +12,13 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.appteam.nithapp.EditorView.EditorView;
+import com.appteam.nithapp.Model.AddTopic;
+import com.appteam.nithapp.Network.RetroCreator;
 import com.appteam.nithapp.R;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class UploadForum extends AppCompatActivity {
     private static final int PICK_IMAGE_REQUEST =1;
@@ -60,8 +66,24 @@ public class UploadForum extends AppCompatActivity {
                 createchooser();
                 return true;
             case R.id.send_forum:
+                sendTopic(editorView.buildEditData());
                 return true;
             default:
         return super.onOptionsItemSelected(item);}
+    }
+
+    private void sendTopic(AddTopic topic){
+        Call<AddTopic> call= RetroCreator.getService().sendTopic(topic);
+        call.enqueue(new Callback<AddTopic>() {
+            @Override
+            public void onResponse(Call<AddTopic> call, Response<AddTopic> response) {
+
+            }
+
+            @Override
+            public void onFailure(Call<AddTopic> call, Throwable t) {
+
+            }
+        });
     }
 }

@@ -9,7 +9,7 @@ import java.util.ArrayList;
  */
 public class ForumResponse {
 
-    @SerializedName("")
+    @SerializedName("main_forum")
     private ArrayList<ForumModel> forum;
 
     public ForumResponse(ArrayList<ForumModel> forum) {

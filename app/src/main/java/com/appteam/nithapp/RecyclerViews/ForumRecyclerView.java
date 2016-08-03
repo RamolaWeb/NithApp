@@ -44,9 +44,6 @@ public class ForumRecyclerView extends RecyclerView.Adapter<ForumRecyclerView.vi
         if (!list.get(position).getUp_vote().isEmpty()) {
             holder.like_forum.setText(list.get(position).getUp_vote());
         }
-        if (!list.get(position).getAuthor().isEmpty()) {
-            holder.user_name.setText(list.get(position).getAuthor());
-        }
         if (!list.get(position).getCreated_on().isEmpty()) {
           holder.time_created.setText(list.get(position).getCreated_on());
         }

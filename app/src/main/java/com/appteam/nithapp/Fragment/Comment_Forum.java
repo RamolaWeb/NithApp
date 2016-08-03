@@ -6,6 +6,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -31,19 +32,14 @@ public class Comment_Forum extends Fragment {
         // Required empty public constructor
     }
 
-    public static Content_Forum newInstance(int id) {
-        Content_Forum f = new Content_Forum();
+    public static Comment_Forum newInstance(int id) {
+        Log.d("ok","ok1");
+        Comment_Forum f = new Comment_Forum();
         Bundle b = new Bundle();
         b.putInt(ID_TOPIC, id);
         f.setArguments(b);
         return f;
     }
-
-    @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-    }
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -54,7 +50,14 @@ public class Comment_Forum extends Fragment {
         list.setLayoutManager(new LinearLayoutManager(getActivity()));
         list.setAdapter(adapter);
 
-        Call<CommentResponse> call = RetroCreator.getService().getAllComment(getArguments().getInt(ID_TOPIC));
+
+        return v;
+    }
+
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        Call<CommentResponse> call = RetroCreator.getService().getAllComment(1);
         call.enqueue(new Callback<CommentResponse>() {
             @Override
             public void onResponse(Call<CommentResponse> call, Response<CommentResponse> response) {
@@ -66,7 +69,5 @@ public class Comment_Forum extends Fragment {
 
             }
         });
-        return v;
     }
-
 }

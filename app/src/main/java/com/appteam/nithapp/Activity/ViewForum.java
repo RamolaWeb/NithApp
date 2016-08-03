@@ -1,6 +1,5 @@
 package com.appteam.nithapp.Activity;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -39,12 +38,14 @@ public class ViewForum extends AppCompatActivity {
             }
         });
 
-        Intent intent = getIntent();
-        if (intent != null) {
-            Comment_Forum.newInstance(intent.getIntExtra(ID_TOPIC, -1));
-            Content_Forum.newInstance(intent.getIntExtra(ID_TOPIC, -1));
-        }
+        //Intent intent = getIntent();
+        //if (intent != null) {
+           // Comment_Forum.newInstance(intent.getIntExtra(ID_TOPIC, -1));
+          //  Content_Forum.newInstance(intent.getIntExtra(ID_TOPIC, -1));
+      //  }
 
+        Comment_Forum.newInstance(1);
+        Content_Forum.newInstance(1);
         findViewById(R.id.submit_comment).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
