@@ -7,7 +7,8 @@ import com.appteam.nithapp.Model.ForumResponse;
 import com.appteam.nithapp.Model.topicResponse;
 
 import retrofit2.Call;
-import retrofit2.http.Body;
+import retrofit2.http.Field;
+import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
 import retrofit2.http.Query;
@@ -20,11 +21,13 @@ public interface RetroService {
     @GET("main_forum.php")
     Call<ForumResponse> getAllForum();
 
+    @FormUrlEncoded()
     @POST("add_new_topic.php")
-    Call<AddTopic> sendTopic(@Body AddTopic topic);
+    Call<AddTopic> sendTopic(@Field("topic") String topic, @Field("detail") String detail, @Field("name") String name, @Field("email") String email);
 
+    @FormUrlEncoded()
     @POST("add_answer.php")
-    Call<AddComment> sendComment(@Body AddComment comment);
+    Call<AddComment> sendComment(@Field("id") String id,@Field("a_name") String name,@Field("a_email") String email,@Field("a_answer") String answer);
 
     @GET("view_comment.php")
     Call<CommentResponse> getAllComment(@Query("id") int id);

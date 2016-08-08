@@ -8,6 +8,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.appteam.nithapp.Model.ForumModel;
@@ -27,6 +28,7 @@ public class ForumActivity extends AppCompatActivity {
 private RecyclerView recyclerView;
 private ForumRecyclerView adapter;
 private ArrayList<ForumModel> list;
+private ProgressBar progressBar;
 
 
     @Override
@@ -45,6 +47,7 @@ private ArrayList<ForumModel> list;
         });
 
         recyclerView= (RecyclerView) findViewById(R.id.list);
+        progressBar= (ProgressBar) findViewById(R.id.progressbar);
         adapter=new ForumRecyclerView(this);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(adapter);
@@ -55,10 +58,12 @@ private ArrayList<ForumModel> list;
             public void onResponse(Call<ForumResponse> call, Response<ForumResponse> response) {
                 list=response.body().getForum();
                 adapter.refresh(list);
+                progressBar.setVisibility(View.GONE);
             }
 
             @Override
             public void onFailure(Call<ForumResponse> call, Throwable t) {
+                progressBar.setVisibility(View.GONE);
                 Toast.makeText(ForumActivity.this,""+t.getMessage(),Toast.LENGTH_LONG).show();
             }
         });
@@ -67,7 +72,7 @@ private ArrayList<ForumModel> list;
             @Override
             public void onItemClick(View view, int position) {
                 Intent i=new Intent(ForumActivity.this,ViewForum.class);
-                i.putExtra(ViewForum.ID_TOPIC,list.get(position).getId());
+                i.putExtra(ViewForum.ID_TOPIC,Integer.parseInt(list.get(position).getId()));
                 startActivity(i);
             }
         }));

@@ -8,7 +8,7 @@ import java.util.ArrayList;
  * Created by lenovo on 8/2/2016.
  */
 public class CommentResponse {
-    @SerializedName("")
+    @SerializedName("comment_forum")
     private ArrayList<Comment> list;
 
     public CommentResponse(ArrayList<Comment> list) {

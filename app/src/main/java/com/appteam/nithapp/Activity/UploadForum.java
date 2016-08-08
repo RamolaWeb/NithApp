@@ -10,6 +10,9 @@ import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ProgressBar;
+import android.widget.Toast;
 
 import com.appteam.nithapp.EditorView.EditorView;
 import com.appteam.nithapp.Model.AddTopic;
@@ -23,11 +26,13 @@ import retrofit2.Response;
 public class UploadForum extends AppCompatActivity {
     private static final int PICK_IMAGE_REQUEST =1;
     private EditorView editorView;
+    private ProgressBar progressBar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_upload_forum);
         editorView= (EditorView) findViewById(R.id.editor);
+        progressBar= (ProgressBar) findViewById(R.id.progress);
 
     }
 
@@ -66,6 +71,7 @@ public class UploadForum extends AppCompatActivity {
                 createchooser();
                 return true;
             case R.id.send_forum:
+                progressBar.setVisibility(View.VISIBLE);
                 sendTopic(editorView.buildEditData());
                 return true;
             default:
@@ -73,16 +79,18 @@ public class UploadForum extends AppCompatActivity {
     }
 
     private void sendTopic(AddTopic topic){
-        Call<AddTopic> call= RetroCreator.getService().sendTopic(topic);
+        Call<AddTopic> call= RetroCreator.getService().sendTopic(topic.getTopic(),topic.getDetail(),topic.getName(),topic.getEmail());
         call.enqueue(new Callback<AddTopic>() {
             @Override
             public void onResponse(Call<AddTopic> call, Response<AddTopic> response) {
-
+                Toast.makeText(UploadForum.this," Forum Succcesfully Uploaded",Toast.LENGTH_SHORT).show();
+                finish();
             }
 
             @Override
             public void onFailure(Call<AddTopic> call, Throwable t) {
-
+                Toast.makeText(UploadForum.this,"Pleaae Try Again",Toast.LENGTH_SHORT).show();
+                progressBar.setVisibility(View.GONE);
             }
         });
     }

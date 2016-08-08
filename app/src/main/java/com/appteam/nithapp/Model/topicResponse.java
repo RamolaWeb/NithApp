@@ -8,12 +8,31 @@ import com.google.gson.annotations.SerializedName;
 public class topicResponse {
     @SerializedName("name")
     private String name;
-    @SerializedName("time")
+    @SerializedName("datetime")
     private String time;
-    @SerializedName("title")
+    @SerializedName("topic")
     private String title;
-    @SerializedName("content")
+    @SerializedName("detail")
     private String content;
+
+    @SerializedName("email")
+    private String email;
+
+    public topicResponse(String name, String time, String title, String content, String email) {
+        this.name = name;
+        this.time = time;
+        this.title = title;
+        this.content = content;
+        this.email = email;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
 
     public String getName() {
         return name;
