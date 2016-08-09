@@ -1,93 +1,18 @@
-<?xml version="1.0" encoding="utf-8"?>
-
-<android.support.v7.widget.CardView
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:card_view="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/card_view"
-    android:layout_margin="4dp"
-    android:layout_height="wrap_content"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    card_view:cardCornerRadius="4dp">
-
-    <LinearLayout
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+    <TextView
+        android:padding="5dp"
+        android:textAppearance="@android:style/TextAppearance.Large"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-<!--
-            <ImageView
-                android:id="@+id/image_user_forum"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1" />-->
-
-            <TextView
-                android:textAppearance="@android:style/TextAppearance.Medium"
-                android:textAlignment="center"
-                android:paddingLeft="2dp"
-                android:text="UserName"
-                android:id="@+id/name_user_forum"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="2" />
-
-            <TextView
-                android:textAppearance="@android:style/TextAppearance.Medium"
-                android:textAlignment="center"
-                android:text="3d"
-                android:id="@+id/time_created_forum"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1" />
-        </LinearLayout>
-
-
-
-        <ImageView
-            android:id="@+id/image_content_forum"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:scaleType="centerCrop"
-            android:visibility="gone" />
-
-        <TextView
-            android:textAlignment="center"
-            android:textSize="20sp"
-            android:textAppearance="@android:style/TextAppearance.Large"
-            android:paddingLeft="2dp"
-            android:text="Hello Your Title Of The Forum Comes Here"
-            android:id="@+id/text_content_forum"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-
-
-
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <TextView
-                android:textSize="20sp"
-                android:textAlignment="center"
-                android:paddingLeft="2dp"
-                android:text="34 View"
-                android:id="@+id/likes_user_forum"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1" />
-
-            <TextView
-                android:textSize="20sp"
-                android:textAlignment="center"
-                android:text="14 Comment"
-                android:id="@+id/comment_user_forum"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1" />
-        </LinearLayout>
-    </LinearLayout>
-</android.support.v7.widget.CardView>
+        android:id="@+id/text_title_forum"
+        android:text="Your Title Comes Here"/>
+    <TextView
+        android:padding="5dp"
+        android:text="by Sahil / 3d ago / 114 Comments"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/detail_forum"/>
+</LinearLayout>

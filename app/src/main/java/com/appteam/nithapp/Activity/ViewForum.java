@@ -6,7 +6,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
@@ -19,15 +18,16 @@ import com.appteam.nithapp.Model.topicResponse;
 import com.appteam.nithapp.Network.RetroCreator;
 import com.appteam.nithapp.R;
 import com.appteam.nithapp.RecyclerViews.CommentRecyclerView;
+import com.appteam.nithapp.Utility.DividerItemDecoration;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
 public class ViewForum extends AppCompatActivity {
-    private TextView name,title,time,content;
+    private TextView detail,title,topic;
     public static final String ID_TOPIC = "id";
-    private LinearLayout l,layout;
+    private LinearLayout layout;
     private EditText e;
     private RecyclerView list;
     private CommentRecyclerView adapter;
@@ -39,10 +39,10 @@ public class ViewForum extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_forum);
 
-        name= (TextView) findViewById(R.id.name_user_forum);
         title= (TextView) findViewById(R.id.text_title_forum);
-        time= (TextView) findViewById(R.id.time_created_forum);
-        content= (TextView) findViewById(R.id.text_content_forum);
+        detail= (TextView) findViewById(R.id.detail_forum);
+        topic= (TextView) findViewById(R.id.text_detail_forum);
+
         layout= (LinearLayout) findViewById(R.id.layout);
         progressBar= (ProgressBar) findViewById(R.id.progress);
 
@@ -52,18 +52,6 @@ public class ViewForum extends AppCompatActivity {
         }
 
         e= (EditText) findViewById(R.id.comment_editext);
-        Button show_send_comment = (Button) findViewById(R.id.button_add_comment);
-         l = (LinearLayout) findViewById(R.id.comment_layout);
-
-        show_send_comment.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                l.setVisibility(View.VISIBLE);
-            }
-        });
-
-
-
         findViewById(R.id.submit_comment).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -78,6 +66,7 @@ public class ViewForum extends AppCompatActivity {
         adapter = new CommentRecyclerView();
         list.setLayoutManager(new LinearLayoutManager(this));
         list.setAdapter(adapter);
+        list.addItemDecoration(new DividerItemDecoration(this,LinearLayoutManager.VERTICAL));
 
         getTopicData(id);
         getComment(id);
@@ -108,10 +97,9 @@ public class ViewForum extends AppCompatActivity {
                 progressBar.setVisibility(View.GONE);
                 layout.setVisibility(View.VISIBLE);
                 topicResponse t=response.body();
-                name.setText(t.getName());
                 title.setText(t.getTitle());
-                time.setText(t.getTime());
-                content.setText(t.getContent());
+                detail.setText("by "+t.getName()+" / "+t.getTime());
+                topic.setText(t.getContent());
                 layout.setVisibility(View.VISIBLE);
 
             }

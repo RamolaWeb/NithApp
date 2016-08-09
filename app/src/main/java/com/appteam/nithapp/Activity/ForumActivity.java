@@ -15,7 +15,8 @@ import com.appteam.nithapp.Model.ForumModel;
 import com.appteam.nithapp.Model.ForumResponse;
 import com.appteam.nithapp.Network.RetroCreator;
 import com.appteam.nithapp.R;
-import com.appteam.nithapp.RecyclerItemClickListener;
+import com.appteam.nithapp.Utility.DividerItemDecoration;
+import com.appteam.nithapp.Utility.RecyclerItemClickListener;
 import com.appteam.nithapp.RecyclerViews.ForumRecyclerView;
 
 import java.util.ArrayList;
@@ -51,6 +52,7 @@ private ProgressBar progressBar;
         adapter=new ForumRecyclerView(this);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(adapter);
+        recyclerView.addItemDecoration(new DividerItemDecoration(this,LinearLayoutManager.VERTICAL));
 
         Call<ForumResponse> forumData= RetroCreator.getService().getAllForum();
         forumData.enqueue(new Callback<ForumResponse>() {

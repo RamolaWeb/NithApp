@@ -1,4 +1,4 @@
-package com.appteam.nithapp;
+package com.appteam.nithapp.Utility;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;

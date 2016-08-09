@@ -5,13 +5,10 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.appteam.nithapp.Model.ForumModel;
 import com.appteam.nithapp.R;
-import com.bumptech.glide.Glide;
-import com.bumptech.glide.load.engine.DiskCacheStrategy;
 
 import java.util.ArrayList;
 
@@ -41,22 +38,10 @@ public class ForumRecyclerView extends RecyclerView.Adapter<ForumRecyclerView.vi
 
     @Override
     public void onBindViewHolder(viewHolder holder, int position) {
-        if (!list.get(position).getUp_vote().isEmpty()) {
-            holder.like_forum.setText(list.get(position).getUp_vote());
-        }
-        if (!list.get(position).getCreated_on().isEmpty()) {
-          holder.time_created.setText(list.get(position).getCreated_on());
-        }
-        if (!list.get(position).getTitle().isEmpty()) {
-              holder.content_forum.setText(list.get(position).getTitle());
-        }
-        if (!list.get(position).getTotal_comment().isEmpty()) {
-            holder.comment_forum.setText(list.get(position).getTotal_comment());
-        }
-        if (list.get(position).getContent_image()!=null&&!list.get(position).getContent_image().isEmpty()) {
-            holder.image_content_forum.setVisibility(View.VISIBLE);
-            Glide.with(context).load(list.get(position).getContent_image()).diskCacheStrategy(DiskCacheStrategy.SOURCE).into(holder.image_content_forum);
-        }
+       if(!list.get(position).getTitle().isEmpty()){
+           holder.title.setText(list.get(position).getTitle());
+       }
+       holder.detail.setText("by Username / "+list.get(position).getCreated_on()+" / "+" "+list.get(position).getTotal_comment()+" comment");
     }
 
     @Override
@@ -65,17 +50,12 @@ public class ForumRecyclerView extends RecyclerView.Adapter<ForumRecyclerView.vi
     }
 
     public static class viewHolder extends RecyclerView.ViewHolder {
-        TextView user_name, content_forum, like_forum, comment_forum,time_created;
-        ImageView image_content_forum;
+       TextView title,detail;
 
         public viewHolder(View itemView) {
             super(itemView);
-            user_name = (TextView) itemView.findViewById(R.id.name_user_forum);
-            content_forum = (TextView) itemView.findViewById(R.id.text_content_forum);
-            like_forum = (TextView) itemView.findViewById(R.id.likes_user_forum);
-            comment_forum = (TextView) itemView.findViewById(R.id.comment_user_forum);
-            image_content_forum = (ImageView) itemView.findViewById(R.id.image_content_forum);
-            time_created= (TextView) itemView.findViewById(R.id.time_created_forum);
+           title= (TextView) itemView.findViewById(R.id.text_title_forum);
+            detail= (TextView) itemView.findViewById(R.id.detail_forum);
         }
     }
 }
